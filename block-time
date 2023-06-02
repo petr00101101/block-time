@@ -1,0 +1,53 @@
+<div id="workdays" style="display:none">
+  <h1>Рабочий день</h1>
+  <p>Добро пожаловать в наш офис!</p>
+</div>
+
+<div id="weekend" style="display:none">
+  <h1>Выходной день</h1>
+  <p>Сегодня мы не работаем.</p>
+</div>
+
+<div id="workHours" style="display:none">
+  <p>Мы работаем с 9:00 до 18:00.</p>
+</div>
+
+<div id="nonWorkHours" style="display:none">
+  <p>Приходите к нам в рабочие часы.</p>
+</div>
+
+<script type="text/javascript" >
+function checkSchedule() {
+  const currentDate = new Date();
+  const currentDayOfWeek = currentDate.getDay();
+  const currentHour = currentDate.getHours();
+
+  const workdaysDiv = document.getElementById('workdays');
+  const weekendDiv = document.getElementById('weekend');
+  const workHoursDiv = document.getElementById('workHours');
+  const nonWorkHoursDiv = document.getElementById('nonWorkHours');
+
+  if (currentDayOfWeek >= 1 && currentDayOfWeek <= 5) {
+    // Отображаем div блок для рабочих дней
+    workdaysDiv.style.display = "block";
+    weekendDiv.style.display = "none";
+  } else {
+    // Отображаем div блок для выходных дней
+    workdaysDiv.style.display = "none";
+    weekendDiv.style.display = "block";
+  }
+
+  if (currentHour >= 9 && currentHour < 18) {
+    // Отображаем div блок для рабочих часов
+    workHoursDiv.style.display = "block";
+    nonWorkHoursDiv.style.display = "none";
+  } else {
+    // Отображаем div блок для нерабочих часов
+    workHoursDiv.style.display = "none";
+    nonWorkHoursDiv.style.display = "block";
+  }
+}
+
+// Запускаем функцию проверки каждую минуту
+setInterval(checkSchedule, 600);
+</script>
